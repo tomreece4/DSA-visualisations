@@ -17,11 +17,12 @@ def bubble_sort(size_of_array):
             plt.clf()
             if number_list[j] > number_list[j + 1]:
                 number_list[j], number_list[j + 1] = number_list[j + 1], number_list[j]
+    colors = ['green'] * size_of_array
+    plt.bar(x, number_list, color=colors)
     plt.show()
 
 
 def selection_sort(size_of_array):
-
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(0, size_of_array, 1)
 
@@ -42,7 +43,9 @@ def selection_sort(size_of_array):
                 # Update min_idx if a smaller element is found
                 min_idx = j
         number_list[i], number_list[min_idx] = number_list[min_idx], number_list[i]
+    colors = ['green'] * size_of_array
+    plt.bar(x, number_list, color=colors)
     plt.show()
 
 
-selection_sort(15)
+bubble_sort(15)
