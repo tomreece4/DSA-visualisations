@@ -48,4 +48,33 @@ def selection_sort(size_of_array):
     plt.show()
 
 
-bubble_sort(15)
+def insertion_sort(size_of_array):
+    number_list = np.random.randint(0, 100, size_of_array)
+    x = np.arange(0, size_of_array, 1)
+    for i in range(1, len(number_list)):
+        key = number_list[i]
+        j = i - 1
+        while j >= 0 and key < number_list[j]:
+            number_list[j + 1] = number_list[j]
+
+            temp_list = number_list.copy()
+            temp_list[j + 1] = key
+
+            colors = ['blue'] * size_of_array
+            colors[j] = 'red'
+            colors[j + 1] = 'purple'
+
+            plt.bar(x, temp_list, color=colors)
+            plt.pause(0.5)
+            plt.clf()
+
+            j -= 1
+
+        number_list[j + 1] = key
+
+    colors = ['green'] * size_of_array
+    plt.bar(x, number_list, color=colors)
+    plt.show()
+
+
+insertion_sort(15)
