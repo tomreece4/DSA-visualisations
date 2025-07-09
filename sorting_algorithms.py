@@ -77,4 +77,53 @@ def insertion_sort(size_of_array):
     plt.show()
 
 
-insertion_sort(15)
+def quick_sort(size_of_array):
+    number_list = np.random.randint(0, 100, size_of_array)
+    x = np.arange(size_of_array)
+
+    def partition(low, high):
+        pivot = number_list[high]
+        i = low - 1
+        # visualize pivot selection
+        for j in range(low, high):
+            # color current element and pivot
+            colors = ['blue'] * size_of_array
+            colors[j] = 'red'
+            colors[high] = 'purple'
+            plt.bar(x, number_list, color=colors)
+            plt.pause(0.2)
+            plt.clf()
+
+            if number_list[j] <= pivot:
+                i += 1
+                # swap elements
+                number_list[i], number_list[j] = number_list[j], number_list[i]
+                colors = ['blue'] * size_of_array
+                colors[i] = 'red'
+                colors[j] = 'red'
+                plt.bar(x, number_list, color=colors)
+                plt.pause(0.2)
+                plt.clf()
+
+        # place pivot in correct position
+        number_list[i+1], number_list[high] = number_list[high], number_list[i+1]
+        colors = ['blue'] * size_of_array
+        colors[i+1] = 'red'
+        colors[high] = 'red'
+        plt.bar(x, number_list, color=colors)
+        plt.pause(0.2)
+        plt.clf()
+        return i + 1
+
+    def _quick_sort(low, high):
+        if low < high:
+            pi = partition(low, high)
+            _quick_sort(low, pi - 1)
+            _quick_sort(pi + 1, high)
+
+    _quick_sort(0, size_of_array - 1)
+
+    # final sorted array in green
+    colors = ['green'] * size_of_array
+    plt.bar(x, number_list, color=colors)
+    plt.show()
