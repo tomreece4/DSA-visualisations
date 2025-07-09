@@ -106,9 +106,9 @@ def quick_sort(size_of_array):
                 plt.clf()
 
         # place pivot in correct position
-        number_list[i+1], number_list[high] = number_list[high], number_list[i+1]
+        number_list[i + 1], number_list[high] = number_list[high], number_list[i + 1]
         colors = ['blue'] * size_of_array
-        colors[i+1] = 'red'
+        colors[i + 1] = 'red'
         colors[high] = 'red'
         plt.bar(x, number_list, color=colors)
         plt.pause(0.2)
@@ -126,4 +126,79 @@ def quick_sort(size_of_array):
     # final sorted array in green
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
+    plt.show()
+
+
+def merge_sort(size_of_array):
+    """
+     Generates a random array of given size and visualizes merge sort step by step.
+     """
+    arr = np.random.randint(0, 100, size_of_array)
+    x = np.arange(size_of_array)
+
+    def merge(left, mid, right):
+        # Copy subarrays
+        L = arr[left:mid + 1].copy()
+        R = arr[mid + 1:right + 1].copy()
+        i = 0
+        j = 0
+        k = left
+        # Merge back into arr
+        while i < len(L) and j < len(R):
+            # Highlight elements being compared
+            colors = ['blue'] * size_of_array
+            colors[left + i] = 'red'
+            colors[mid + 1 + j] = 'purple'
+            plt.bar(x, arr, color=colors)
+            plt.pause(0.01)
+            plt.clf()
+
+            if L[i] <= R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+            # Show the placement
+            colors = ['blue'] * size_of_array
+            colors[k - 1] = 'red'
+            plt.bar(x, arr, color=colors)
+            plt.pause(0.01)
+            plt.clf()
+
+        # Copy any remaining elements of L
+        while i < len(L):
+            arr[k] = L[i]
+            colors = ['blue'] * size_of_array
+            colors[k] = 'red'
+            plt.bar(x, arr, color=colors)
+            plt.pause(0.01)
+            plt.clf()
+            i += 1
+            k += 1
+
+        # Copy any remaining elements of R
+        while j < len(R):
+            arr[k] = R[j]
+            colors = ['blue'] * size_of_array
+            colors[k] = 'purple'
+            plt.bar(x, arr, color=colors)
+            plt.pause(0.01)
+            plt.clf()
+            j += 1
+            k += 1
+
+    def _merge_sort(left, right):
+        if left < right:
+            mid = (left + right) // 2
+            _merge_sort(left, mid)
+            _merge_sort(mid + 1, right)
+            merge(left, mid, right)
+
+    _merge_sort(0, size_of_array - 1)
+
+    # Final display in green
+    colors = ['green'] * size_of_array
+    plt.bar(x, arr, color=colors)
     plt.show()
