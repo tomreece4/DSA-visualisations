@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from collections import deque
 
 
 # Compute positions for a binary tree so that it's laid out nicely
@@ -38,13 +39,13 @@ def dfs_visualize(depth):
 
         # First draw all the edges _behind_ the nodes:
         for parent in range(num_nodes):
-            for child in (2*parent+1, 2*parent+2):
+            for child in (2 * parent + 1, 2 * parent + 2):
                 if child < num_nodes:
                     x0, y0 = pos[parent]
                     x1, y1 = pos[child]
                     plt.plot([x0, x1], [y0, y1],
                              color='gray',
-                             zorder=1)      # low z-order = behind
+                             zorder=1)  # low z-order = behind
 
         # Then draw all the nodes on top:
         for i in range(num_nodes):
@@ -58,26 +59,25 @@ def dfs_visualize(depth):
             plt.scatter(x, y,
                         s=800,
                         color=c,
-                        zorder=2)          # higher z-order = front
+                        zorder=2)  # higher z-order = front
             plt.text(x, y,
                      str(values[i]),
                      va='center',
                      ha='center',
                      color='white',
-                     zorder=3)          # even above the dots
+                     zorder=3)  # even above the dots
 
         plt.axis('off')
         plt.pause(0.5)
         plt.clf()
 
         # recurse…
-        left = 2*idx + 1
+        left = 2 * idx + 1
         if left < num_nodes:
             _dfs(left)
-        right = 2*idx + 2
+        right = 2 * idx + 2
         if right < num_nodes:
             _dfs(right)
-
 
     # start recursion
     _dfs(0)
@@ -97,5 +97,81 @@ def dfs_visualize(depth):
     plt.show()
 
 
+def bfs_visualize(depth):
+    num_nodes = 2 ** depth - 1
+    values = np.random.randint(0, 100, size=num_nodes)
+    pos = compute_positions(num_nodes)
+    visited = set()
+    queue = deque([0])
+
+    while queue:
+        idx = queue.popleft()
+        visited.add(idx)
+
+        # 1) draw all edges underneath
+        for parent in range(num_nodes):
+            for child in (2 * parent + 1, 2 * parent + 2):
+                if child < num_nodes:
+                    x0, y0 = pos[parent]
+                    x1, y1 = pos[child]
+                    plt.plot([x0, x1], [y0, y1],
+                             color='gray',
+                             zorder=1)
+
+        # 2) draw nodes on top
+        for i in range(num_nodes):
+            x, y = pos[i]
+            if i == idx:
+                col = 'red'
+            elif i in visited:
+                col = 'green'
+            else:
+                col = 'blue'
+            plt.scatter(x, y,
+                        s=800,
+                        color=col,
+                        zorder=2)
+            plt.text(x, y,
+                     str(values[i]),
+                     va='center',
+                     ha='center',
+                     color='white',
+                     zorder=3)
+
+        plt.axis('off')
+        plt.pause(0.5)
+        plt.clf()
+
+        # enqueue children
+        left, right = 2 * idx + 1, 2 * idx + 2
+        if left < num_nodes:  queue.append(left)
+        if right < num_nodes: queue.append(right)
+
+    # final state: all green
+    for parent in range(num_nodes):
+        for child in (2 * parent + 1, 2 * parent + 2):
+            if child < num_nodes:
+                x0, y0 = pos[parent]
+                x1, y1 = pos[child]
+                plt.plot([x0, x1], [y0, y1],
+                         color='gray',
+                         zorder=1)
+    for i in range(num_nodes):
+        x, y = pos[i]
+        plt.scatter(x, y,
+                    s=800,
+                    color='green',
+                    zorder=2)
+        plt.text(x, y,
+                 str(values[i]),
+                 va='center',
+                 ha='center',
+                 color='white',
+                 zorder=3)
+
+    plt.axis('off')
+    plt.show()
+
+
 # Example usage: a tree of depth 4 (15 nodes)
-dfs_visualize(depth=4)
+bfs_visualize(depth=4)
