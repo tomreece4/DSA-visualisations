@@ -172,6 +172,3 @@ def bfs_visualize(depth):
     plt.axis('off')
     plt.show()
 
-
-# Example usage: a tree of depth 4 (15 nodes)
-bfs_visualize(depth=4)
