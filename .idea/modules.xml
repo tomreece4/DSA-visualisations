@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/failure.iml" filepath="$PROJECT_DIR$/.idea/failure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DSAVisualisations.iml" filepath="$PROJECT_DIR$/.idea/DSAVisualisations.iml" />
     </modules>
   </component>
 </project>

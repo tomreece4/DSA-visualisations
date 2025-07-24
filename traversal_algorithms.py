@@ -20,7 +20,7 @@ def compute_positions(num_nodes):
     return pos
 
 
-def dfs_visualize(depth):
+def dfs_visualize(depth, speed):
     """
     Build a complete binary tree of depth `depth` (so 2**depth - 1 nodes),
     then animate a pre-order DFS on it.
@@ -68,7 +68,7 @@ def dfs_visualize(depth):
                      zorder=3)  # even above the dots
 
         plt.axis('off')
-        plt.pause(0.5)
+        plt.pause(speed)
         plt.clf()
 
         # recurse…
@@ -97,7 +97,7 @@ def dfs_visualize(depth):
     plt.show()
 
 
-def bfs_visualize(depth):
+def bfs_visualize(depth, speed):
     num_nodes = 2 ** depth - 1
     values = np.random.randint(0, 100, size=num_nodes)
     pos = compute_positions(num_nodes)
@@ -139,7 +139,7 @@ def bfs_visualize(depth):
                      zorder=3)
 
         plt.axis('off')
-        plt.pause(0.5)
+        plt.pause(speed)
         plt.clf()
 
         # enqueue children

@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Performs a bubble sort on the specified amount of random numbers from 0-100
-def bubble_sort(size_of_array):
+def bubble_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(0, size_of_array, 1)
 
@@ -13,7 +13,7 @@ def bubble_sort(size_of_array):
             colors[j] = 'red'
             colors[j + 1] = 'red'
             plt.bar(x, number_list, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
             if number_list[j] > number_list[j + 1]:
                 number_list[j], number_list[j + 1] = number_list[j + 1], number_list[j]
@@ -22,7 +22,7 @@ def bubble_sort(size_of_array):
     plt.show()
 
 
-def selection_sort(size_of_array):
+def selection_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(0, size_of_array, 1)
 
@@ -37,7 +37,7 @@ def selection_sort(size_of_array):
             colors[j] = 'red'
             colors[min_idx] = 'red'
             plt.bar(x, number_list, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
             if number_list[j] < number_list[min_idx]:
                 # Update min_idx if a smaller element is found
@@ -48,7 +48,7 @@ def selection_sort(size_of_array):
     plt.show()
 
 
-def insertion_sort(size_of_array):
+def insertion_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(0, size_of_array, 1)
     for i in range(1, len(number_list)):
@@ -65,7 +65,7 @@ def insertion_sort(size_of_array):
             colors[j + 1] = 'purple'
 
             plt.bar(x, temp_list, color=colors)
-            plt.pause(0.5)
+            plt.pause(speed)
             plt.clf()
 
             j -= 1
@@ -77,7 +77,7 @@ def insertion_sort(size_of_array):
     plt.show()
 
 
-def quick_sort(size_of_array):
+def quick_sort(size_of_array,speed):
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(size_of_array)
 
@@ -91,7 +91,7 @@ def quick_sort(size_of_array):
             colors[j] = 'red'
             colors[high] = 'purple'
             plt.bar(x, number_list, color=colors)
-            plt.pause(0.2)
+            plt.pause(speed)
             plt.clf()
 
             if number_list[j] <= pivot:
@@ -102,7 +102,7 @@ def quick_sort(size_of_array):
                 colors[i] = 'red'
                 colors[j] = 'red'
                 plt.bar(x, number_list, color=colors)
-                plt.pause(0.2)
+                plt.pause(speed)
                 plt.clf()
 
         # place pivot in correct position
@@ -111,7 +111,7 @@ def quick_sort(size_of_array):
         colors[i + 1] = 'red'
         colors[high] = 'red'
         plt.bar(x, number_list, color=colors)
-        plt.pause(0.2)
+        plt.pause(speed)
         plt.clf()
         return i + 1
 
@@ -129,7 +129,7 @@ def quick_sort(size_of_array):
     plt.show()
 
 
-def merge_sort(size_of_array):
+def merge_sort(size_of_array, speed):
     """
      Generates a random array of given size and visualizes merge sort step by step.
      """
@@ -150,7 +150,7 @@ def merge_sort(size_of_array):
             colors[left + i] = 'red'
             colors[mid + 1 + j] = 'purple'
             plt.bar(x, arr, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
 
             if L[i] <= R[j]:
@@ -164,7 +164,7 @@ def merge_sort(size_of_array):
             colors = ['blue'] * size_of_array
             colors[k - 1] = 'red'
             plt.bar(x, arr, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
 
         # Copy any remaining elements of L
@@ -173,7 +173,7 @@ def merge_sort(size_of_array):
             colors = ['blue'] * size_of_array
             colors[k] = 'red'
             plt.bar(x, arr, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
             i += 1
             k += 1
@@ -184,7 +184,7 @@ def merge_sort(size_of_array):
             colors = ['blue'] * size_of_array
             colors[k] = 'purple'
             plt.bar(x, arr, color=colors)
-            plt.pause(0.01)
+            plt.pause(speed)
             plt.clf()
             j += 1
             k += 1
