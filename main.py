@@ -10,9 +10,11 @@ if __name__ == "__main__":
     def update_param_slider(*args):
         algo = algo_var.get()
         if algo in ["Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Merge Sort", "Linear Search", "Binary Search"]:
+            param_text_label.config(text="Size:")
             param_slider.config(from_=5, to=200)
             param_slider.set(30)
         elif algo in ["Depth-First Search", "Breadth-First Search"]:
+            param_text_label.config(text="Depth:")
             param_slider.config(from_=2, to=5)
             param_slider.set(4)
 
@@ -66,7 +68,8 @@ if __name__ == "__main__":
     algo_menu.bind("<<ComboboxSelected>>", update_param_slider)
 
     # Parameter slider with label
-    ttk.Label(mainframe, text="Size / Depth:").grid(column=0, row=1, sticky=tk.W)
+    param_text_label = ttk.Label(mainframe, text="Size:")
+    param_text_label.grid(column=0, row=1, sticky=tk.W)
     param_var = tk.DoubleVar(value=30)
     param_slider = ttk.Scale(mainframe, variable=param_var, from_=5, to=200, orient="horizontal",
                              command=lambda val: param_value_label.config(text=str(int(float(val)))))
@@ -94,4 +97,5 @@ if __name__ == "__main__":
 
     update_param_slider()
     root.mainloop()
+
 
