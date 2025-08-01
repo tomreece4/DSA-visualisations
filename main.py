@@ -34,6 +34,8 @@ if __name__ == "__main__":
             traversal_algorithms.bfs_visualize(param, speed)
         elif algo == "Linear Search":
             searching_algorithms.linear_search(param, speed)
+        elif algo == "Binary Search":
+            searching_algorithms.binary_search(param, speed)
 
     # GUI setup
     root = tk.Tk()
@@ -54,7 +56,8 @@ if __name__ == "__main__":
                                   "Merge Sort",
                                   "Depth-First Search",
                                   "Breadth-First Search",
-                                  "Linear Search"
+                                  "Linear Search",
+                                  "Binary Search",
                               ])
     algo_menu.grid(column=1, row=0, sticky=tk.EW)
 
