@@ -7,17 +7,20 @@ if __name__ == "__main__":
     import tkinter as tk
     from tkinter import ttk, messagebox
 
+    def update_param_slider(*args):
+        algo = algo_var.get()
+        if algo in ["Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Merge Sort", "Linear Search", "Binary Search"]:
+            param_slider.config(from_=5, to=200)
+            param_slider.set(30)
+        elif algo in ["Depth-First Search", "Breadth-First Search"]:
+            param_slider.config(from_=2, to=10)
+            param_slider.set(4)
+
     def run():
         algo = algo_var.get()
-        try:
-            param = int(param_entry.get())
-        except ValueError:
-            messagebox.showerror("Invalid input", "Please enter an integer parameter.")
-            return
-
+        param = int(param_var.get())
         speed = speed_var.get()
 
-        # call the corresponding visualization function
         if algo == "Bubble Sort":
             sorting_algorithms.bubble_sort(param, speed)
         elif algo == "Selection Sort":
@@ -60,12 +63,13 @@ if __name__ == "__main__":
                                   "Binary Search",
                               ])
     algo_menu.grid(column=1, row=0, sticky=tk.EW)
+    algo_menu.bind("<<ComboboxSelected>>", update_param_slider)
 
-    # Parameter entry (array size or tree depth)
+    # Parameter slider
     ttk.Label(mainframe, text="Size / Depth:").grid(column=0, row=1, sticky=tk.W)
-    param_entry = ttk.Entry(mainframe)
-    param_entry.grid(column=1, row=1, sticky=tk.EW)
-    param_entry.insert(0, "20")
+    param_var = tk.IntVar(value=30)
+    param_slider = ttk.Scale(mainframe, variable=param_var, from_=5, to=200, orient="horizontal")
+    param_slider.grid(column=1, row=1, sticky=tk.EW)
 
     # Speed slider
     ttk.Label(mainframe, text="Speed").grid(column=0, row=2, sticky=tk.W)
@@ -77,10 +81,11 @@ if __name__ == "__main__":
     run_button = ttk.Button(mainframe, text="Run", command=run)
     run_button.grid(column=0, row=3, columnspan=2, pady=5)
 
-
     # Make columns expand
     root.columnconfigure(0, weight=1)
     root.columnconfigure(1, weight=1)
     mainframe.columnconfigure(1, weight=1)
 
+    update_param_slider()
     root.mainloop()
+
