@@ -5,9 +5,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 def bubble_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
@@ -53,9 +53,9 @@ def bubble_sort(size_of_array, speed):
     plt.show()
 
 
-
 import matplotlib.pyplot as plt
 import numpy as np
+
 
 def selection_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
@@ -65,14 +65,11 @@ def selection_sort(size_of_array, speed):
         min_idx = i
 
         for j in range(i + 1, size_of_array):
-            # Default all bars to blue
             colors = ['blue'] * size_of_array
 
-            # Mark sorted section in green
             for k in range(i):
                 colors[k] = 'green'
 
-            # Current comparison
             colors[j] = 'red'
 
             # Current minimum
@@ -85,10 +82,8 @@ def selection_sort(size_of_array, speed):
             if number_list[j] < number_list[min_idx]:
                 min_idx = j
 
-        # Swap the found minimum element with the first element of the unsorted part
         number_list[i], number_list[min_idx] = number_list[min_idx], number_list[i]
 
-        # Show swap with orange highlight
         colors = ['blue'] * size_of_array
         for k in range(i + 1):
             colors[k] = 'green'
@@ -105,33 +100,66 @@ def selection_sort(size_of_array, speed):
     plt.show()
 
 
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 def insertion_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
-    x = np.arange(0, size_of_array, 1)
-    for i in range(1, len(number_list)):
+    x = np.arange(size_of_array)
+
+    plt.figure()
+    for i in range(1, size_of_array):
         key = number_list[i]
         j = i - 1
-        while j >= 0 and key < number_list[j]:
+
+        while j >= 0 and number_list[j] > key:
             number_list[j + 1] = number_list[j]
 
-            temp_list = number_list.copy()
-            temp_list[j + 1] = key
+            temp = number_list.copy()
+            temp[i] = key
 
             colors = ['blue'] * size_of_array
+            for k in range(i + 1):
+                colors[k] = 'green'
             colors[j] = 'red'
-            colors[j + 1] = 'purple'
+            colors[i] = 'yellow'
 
-            plt.bar(x, temp_list, color=colors)
+            plt.cla()
+            plt.bar(x, temp, color=colors)
+            plt.ylim(0, 110)
             plt.pause(speed)
-            plt.clf()
 
             j -= 1
 
         number_list[j + 1] = key
 
+        colors = ['blue'] * size_of_array
+        for k in range(i + 1):
+            colors[k] = 'green'
+        colors[j + 1] = 'orange'
+
+        plt.cla()
+        plt.bar(x, number_list, color=colors)
+        plt.ylim(0, 110)
+        plt.pause(speed)
+
+    plt.cla()
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
+    plt.ylim(0, 110)
     plt.show()
+
+
 
 
 def quick_sort(size_of_array, speed):
@@ -141,9 +169,7 @@ def quick_sort(size_of_array, speed):
     def partition(low, high):
         pivot = number_list[high]
         i = low - 1
-        # visualize pivot selection
         for j in range(low, high):
-            # color current element and pivot
             colors = ['blue'] * size_of_array
             colors[j] = 'red'
             colors[high] = 'purple'
@@ -153,7 +179,6 @@ def quick_sort(size_of_array, speed):
 
             if number_list[j] <= pivot:
                 i += 1
-                # swap elements
                 number_list[i], number_list[j] = number_list[j], number_list[i]
                 colors = ['blue'] * size_of_array
                 colors[i] = 'red'
@@ -162,7 +187,6 @@ def quick_sort(size_of_array, speed):
                 plt.pause(speed)
                 plt.clf()
 
-        # place pivot in correct position
         number_list[i + 1], number_list[high] = number_list[high], number_list[i + 1]
         colors = ['blue'] * size_of_array
         colors[i + 1] = 'red'
@@ -180,7 +204,6 @@ def quick_sort(size_of_array, speed):
 
     _quick_sort(0, size_of_array - 1)
 
-    # final sorted array in green
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
     plt.show()
@@ -194,15 +217,12 @@ def merge_sort(size_of_array, speed):
     x = np.arange(size_of_array)
 
     def merge(left, mid, right):
-        # Copy subarrays
         L = arr[left:mid + 1].copy()
         R = arr[mid + 1:right + 1].copy()
         i = 0
         j = 0
         k = left
-        # Merge back into arr
         while i < len(L) and j < len(R):
-            # Highlight elements being compared
             colors = ['blue'] * size_of_array
             colors[left + i] = 'red'
             colors[mid + 1 + j] = 'purple'
@@ -217,14 +237,12 @@ def merge_sort(size_of_array, speed):
                 arr[k] = R[j]
                 j += 1
             k += 1
-            # Show the placement
             colors = ['blue'] * size_of_array
             colors[k - 1] = 'red'
             plt.bar(x, arr, color=colors)
             plt.pause(speed)
             plt.clf()
 
-        # Copy any remaining elements of L
         while i < len(L):
             arr[k] = L[i]
             colors = ['blue'] * size_of_array
@@ -235,7 +253,6 @@ def merge_sort(size_of_array, speed):
             i += 1
             k += 1
 
-        # Copy any remaining elements of R
         while j < len(R):
             arr[k] = R[j]
             colors = ['blue'] * size_of_array
@@ -255,7 +272,6 @@ def merge_sort(size_of_array, speed):
 
     _merge_sort(0, size_of_array - 1)
 
-    # Final display in green
     colors = ['green'] * size_of_array
     plt.bar(x, arr, color=colors)
     plt.show()
