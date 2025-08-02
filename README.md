@@ -54,16 +54,22 @@ python main.py
 
 Select the desired algorithm, and adjust sliders:
 
-
+![GUI](screenshots/GUI.png)
 
 ---
 
 ## Example Output
 
-Here's an example of what the sentiment analysis output looks like in the terminal:
+I have provided a screenshot of searching, sorting and traversal algorithms in action below:
 
-![DFS]()
+![DFS](screenshots/DFS.png)
+*Depth First Search Binary Tree: Green means it has been visited, red is the current node,
+blue are the unvisited nodes.*
 
-![Binary Search]()
+![Binary Search](screenshots/Binary_Search.png)
+*Binary Search: Grey elements have been eliminated as possibilities, purple are the boundaries,
+red is the middle index, blue are unvisited nodes*
 
-![Quick Sort]()
+![Merge Sort](screenshots/Merge_Sort.png)
+*Merge Sort: Red element is the left value being compared, purple element is the right value
+being compared*.
