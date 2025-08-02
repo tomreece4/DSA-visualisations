@@ -1,25 +1,57 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 # Performs a bubble sort on the specified amount of random numbers from 0-100
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
 def bubble_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
-    x = np.arange(0, size_of_array, 1)
+    x = np.arange(size_of_array)
 
     for i in range(size_of_array):
-        for j in range(0, size_of_array - i - 1):
+        # Track sorted portion: last i elements are sorted
+        sorted_boundary = size_of_array - i
+
+        for j in range(0, sorted_boundary - 1):
+            # Default all to blue
             colors = ['blue'] * size_of_array
+
+            # Mark already sorted elements green
+            for k in range(sorted_boundary, size_of_array):
+                colors[k] = 'green'
+
+            # Mark elements being compared
             colors[j] = 'red'
             colors[j + 1] = 'red'
+
             plt.bar(x, number_list, color=colors)
             plt.pause(speed)
             plt.clf()
+
             if number_list[j] > number_list[j + 1]:
                 number_list[j], number_list[j + 1] = number_list[j + 1], number_list[j]
+
+                # Highlight swap in orange
+                colors = ['blue'] * size_of_array
+                for k in range(sorted_boundary, size_of_array):
+                    colors[k] = 'green'
+                colors[j] = 'orange'
+                colors[j + 1] = 'orange'
+
+                plt.bar(x, number_list, color=colors)
+                plt.pause(speed)
+                plt.clf()
+
+    # Final full green display
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
     plt.show()
+
 
 
 def selection_sort(size_of_array, speed):
@@ -77,7 +109,7 @@ def insertion_sort(size_of_array, speed):
     plt.show()
 
 
-def quick_sort(size_of_array,speed):
+def quick_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(size_of_array)
 
