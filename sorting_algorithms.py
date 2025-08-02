@@ -54,27 +54,52 @@ def bubble_sort(size_of_array, speed):
 
 
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 def selection_sort(size_of_array, speed):
     number_list = np.random.randint(0, 100, size_of_array)
-    x = np.arange(0, size_of_array, 1)
+    x = np.arange(size_of_array)
 
     for i in range(size_of_array):
-        # Assume the current position holds
-        # the minimum element
         min_idx = i
-        # Iterate through the unsorted portion
-        # to find the actual minimum
+
         for j in range(i + 1, size_of_array):
+            # Default all bars to blue
             colors = ['blue'] * size_of_array
+
+            # Mark sorted section in green
+            for k in range(i):
+                colors[k] = 'green'
+
+            # Current comparison
             colors[j] = 'red'
-            colors[min_idx] = 'red'
+
+            # Current minimum
+            colors[min_idx] = 'yellow'
+
             plt.bar(x, number_list, color=colors)
             plt.pause(speed)
             plt.clf()
+
             if number_list[j] < number_list[min_idx]:
-                # Update min_idx if a smaller element is found
                 min_idx = j
+
+        # Swap the found minimum element with the first element of the unsorted part
         number_list[i], number_list[min_idx] = number_list[min_idx], number_list[i]
+
+        # Show swap with orange highlight
+        colors = ['blue'] * size_of_array
+        for k in range(i + 1):
+            colors[k] = 'green'
+        colors[i] = 'orange'
+        colors[min_idx] = 'orange'
+
+        plt.bar(x, number_list, color=colors)
+        plt.pause(speed)
+        plt.clf()
+
+    # Final sorted display
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
     plt.show()
