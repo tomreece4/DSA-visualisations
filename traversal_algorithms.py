@@ -69,7 +69,7 @@ def dfs_visualize(depth, speed):
 
         plt.axis('off')
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
 
         # recurse…
         left = 2 * idx + 1
@@ -140,7 +140,7 @@ def bfs_visualize(depth, speed):
 
         plt.axis('off')
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
 
         # enqueue children
         left, right = 2 * idx + 1, 2 * idx + 2

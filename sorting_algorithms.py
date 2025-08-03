@@ -20,7 +20,7 @@ def bubble_sort(size_of_array, speed):
 
             plt.bar(x, number_list, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
 
             if number_list[j] > number_list[j + 1]:
                 number_list[j], number_list[j + 1] = number_list[j + 1], number_list[j]
@@ -33,7 +33,7 @@ def bubble_sort(size_of_array, speed):
 
                 plt.bar(x, number_list, color=colors)
                 plt.pause(speed)
-                plt.clf()
+                plt.cla()
 
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
@@ -59,7 +59,7 @@ def selection_sort(size_of_array, speed):
 
             plt.bar(x, number_list, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
 
             if number_list[j] < number_list[min_idx]:
                 min_idx = j
@@ -74,7 +74,7 @@ def selection_sort(size_of_array, speed):
 
         plt.bar(x, number_list, color=colors)
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
 
     colors = ['green'] * size_of_array
     plt.bar(x, number_list, color=colors)
@@ -141,7 +141,7 @@ def quick_sort(size_of_array, speed):
             colors[high] = 'purple'
             plt.bar(x, number_list, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
 
             if number_list[j] <= pivot:
                 i += 1
@@ -151,7 +151,7 @@ def quick_sort(size_of_array, speed):
                 colors[j] = 'red'
                 plt.bar(x, number_list, color=colors)
                 plt.pause(speed)
-                plt.clf()
+                plt.cla()
 
         number_list[i + 1], number_list[high] = number_list[high], number_list[i + 1]
         colors = ['blue'] * size_of_array
@@ -159,7 +159,7 @@ def quick_sort(size_of_array, speed):
         colors[high] = 'red'
         plt.bar(x, number_list, color=colors)
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
         return i + 1
 
     def _quick_sort(low, high):
@@ -194,7 +194,7 @@ def merge_sort(size_of_array, speed):
             colors[mid + 1 + j] = 'purple'
             plt.bar(x, arr, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
 
             if L[i] <= R[j]:
                 arr[k] = L[i]
@@ -207,7 +207,7 @@ def merge_sort(size_of_array, speed):
             colors[k - 1] = 'red'
             plt.bar(x, arr, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
 
         while i < len(L):
             arr[k] = L[i]
@@ -215,7 +215,7 @@ def merge_sort(size_of_array, speed):
             colors[k] = 'red'
             plt.bar(x, arr, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
             i += 1
             k += 1
 
@@ -225,7 +225,7 @@ def merge_sort(size_of_array, speed):
             colors[k] = 'purple'
             plt.bar(x, arr, color=colors)
             plt.pause(speed)
-            plt.clf()
+            plt.cla()
             j += 1
             k += 1
 

@@ -15,13 +15,13 @@ def linear_search(size_of_array, speed, target=None):
         plt.bar(x, number_list, color=colors)
         plt.title(f"Searching for: {target}")
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
         if number_list[i] == target:
             colors[i] = 'green'
             plt.bar(x, number_list, color=colors)
             plt.title(f"Found: {target} at index {i}")
             plt.pause(0.5)
-            plt.clf()
+            plt.cla()
             found = True
             break
 
@@ -29,7 +29,7 @@ def linear_search(size_of_array, speed, target=None):
         plt.bar(x, number_list, color='blue')
         plt.title(f"{target} not found in array.")
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
 
     colors = ['green' if number_list[i] == target else 'blue' for i in range(size_of_array)]
     plt.bar(x, number_list, color=colors)
@@ -64,7 +64,7 @@ def binary_search(size_of_array, speed, target=None):
         plt.bar(x, number_list, color=colors)
         plt.title(f"Target: {target} | Low: {low}, Mid: {mid}, High: {high}")
         plt.pause(speed)
-        plt.clf()
+        plt.cla()
 
         if number_list[mid] == target:
             colors[mid] = 'green'
@@ -73,7 +73,7 @@ def binary_search(size_of_array, speed, target=None):
             plt.pause(1.5)
             plt.bar(x, number_list, color='green')
             plt.pause(1.5)
-            plt.clf()
+            plt.cla()
             found = True
             break
         elif number_list[mid] < target:
