@@ -66,7 +66,7 @@ I have provided a screenshot of searching, sorting and traversal algorithms in a
 *Depth First Search Binary Tree: Green means it has been visited, red is the current node,
 blue are the unvisited nodes.*
 
-![Binary Search](screenshots/Binary_Search.png)
+![Binary Search](gifs/binary_search.gif)
 *Binary Search: Grey elements have been eliminated as possibilities, purple are the boundaries,
 red is the middle index, blue are unvisited nodes*
 

@@ -57,9 +57,9 @@ def binary_search(size_of_array, speed, target=None):
         colors[high] = 'purple'
         colors[mid] = 'red'
         for i in range(0, low):
-            colors[i] = 'grey'
+            colors[i] = 'lightgrey'
         for i in range(high+1, size_of_array):
-            colors[i] = 'grey'
+            colors[i] = 'lightgrey'
 
         plt.bar(x, number_list, color=colors)
         plt.title(f"Target: {target} | Low: {low}, Mid: {mid}, High: {high}")
