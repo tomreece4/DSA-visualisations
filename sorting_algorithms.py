@@ -176,68 +176,59 @@ def quick_sort(size_of_array, speed):
 
 
 def merge_sort(size_of_array, speed):
-    """
-     Generates a random array of given size and visualizes merge sort step by step.
-     """
     arr = np.random.randint(0, 100, size_of_array)
     x = np.arange(size_of_array)
 
-    def merge(left, mid, right):
-        L = arr[left:mid + 1].copy()
-        R = arr[mid + 1:right + 1].copy()
-        i = 0
-        j = 0
-        k = left
-        while i < len(L) and j < len(R):
-            colors = ['blue'] * size_of_array
-            colors[left + i] = 'red'
-            colors[mid + 1 + j] = 'purple'
-            plt.bar(x, arr, color=colors)
-            plt.pause(speed)
-            plt.cla()
+    def draw_array(data, color_map, title=""):
+        plt.cla()
+        plt.bar(x, data, color=color_map)
+        plt.title(title)
+        plt.ylim(0, 110)
+        plt.pause(speed)
 
+    def merge(left, mid, right):
+        L = arr[left:mid + 1]
+        R = arr[mid + 1:right + 1]
+        merged = []
+        i = j = 0
+
+        while i < len(L) and j < len(R):
             if L[i] <= R[j]:
-                arr[k] = L[i]
+                merged.append(L[i])
                 i += 1
             else:
-                arr[k] = R[j]
+                merged.append(R[j])
                 j += 1
-            k += 1
-            colors = ['blue'] * size_of_array
-            colors[k - 1] = 'red'
-            plt.bar(x, arr, color=colors)
-            plt.pause(speed)
-            plt.cla()
+        merged.extend(L[i:])
+        merged.extend(R[j:])
 
-        while i < len(L):
-            arr[k] = L[i]
+        for idx, val in enumerate(merged):
+            arr[left + idx] = val
             colors = ['blue'] * size_of_array
-            colors[k] = 'red'
-            plt.bar(x, arr, color=colors)
-            plt.pause(speed)
-            plt.cla()
-            i += 1
-            k += 1
-
-        while j < len(R):
-            arr[k] = R[j]
-            colors = ['blue'] * size_of_array
-            colors[k] = 'purple'
-            plt.bar(x, arr, color=colors)
-            plt.pause(speed)
-            plt.cla()
-            j += 1
-            k += 1
+            for i in range(left, right + 1):
+                colors[i] = 'purple'
+            colors[left + idx] = 'red'
+            draw_array(arr, colors, f"Merging {left}-{right}")
 
     def _merge_sort(left, right):
         if left < right:
             mid = (left + right) // 2
+
+            colors = ['blue'] * size_of_array
+            for i in range(left, mid + 1):
+                colors[i] = 'yellow'
+            for i in range(mid + 1, right + 1):
+                colors[i] = 'orange'
+            draw_array(arr, colors, f"Splitting: {left}-{mid} | {mid+1}-{right}")
+
             _merge_sort(left, mid)
             _merge_sort(mid + 1, right)
             merge(left, mid, right)
 
     _merge_sort(0, size_of_array - 1)
 
-    colors = ['green'] * size_of_array
-    plt.bar(x, arr, color=colors)
+    draw_array(arr, ['green'] * size_of_array, "Sorted!")
     plt.show()
+
+
+
