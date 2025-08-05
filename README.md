@@ -68,8 +68,8 @@ blue are the unvisited nodes.*
 
 ![Binary Search](gifs/binary_search.gif)
 *Binary Search: Grey elements have been eliminated as possibilities, purple are the boundaries,
-red is the middle index, blue are unvisited nodes*
+red is the middle index, blue are unvisited nodes.*
 
-![Merge Sort](screenshots/Merge_Sort.png)
-*Merge Sort: Red element is the left value being compared, purple element is the right value
-being compared*.
+![Bubble Sort](gifs/bubble_sort.gif)
+*Bubble Sort: Red elements are the values being compared, orange indicates a swap between these elements,
+green indicates an element in it's sorted position.*
