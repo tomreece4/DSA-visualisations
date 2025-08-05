@@ -60,7 +60,7 @@ Select the desired algorithm, and adjust sliders:
 
 ## Example Output
 
-I have provided a screenshot of searching, sorting and traversal algorithms in action below:
+I have provided GIFs for some searching, sorting and traversal algorithms in action below, using my visualisation tool:
 
 ![DFS](gifs/dfs.gif)
 *Depth First Search Binary Tree: Green means it has been visited, red is the current node,
