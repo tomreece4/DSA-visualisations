@@ -62,7 +62,7 @@ Select the desired algorithm, and adjust sliders:
 
 I have provided a screenshot of searching, sorting and traversal algorithms in action below:
 
-![DFS](screenshots/DFS.png)
+![DFS](gifs/dfs.gif)
 *Depth First Search Binary Tree: Green means it has been visited, red is the current node,
 blue are the unvisited nodes.*
 
