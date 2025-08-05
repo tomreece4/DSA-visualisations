@@ -85,7 +85,7 @@ def dfs_visualize(depth, speed):
     # final state: all green
     for i in range(num_nodes):
         x, y = pos[i]
-        plt.scatter(x, y, s=800, color='green')
+        plt.scatter(x, y, s=800, color='green', zorder=3)
         plt.text(x, y, str(values[i]), va='center', ha='center', color='white')
     for parent in range(num_nodes):
         for child in (2 * parent + 1, 2 * parent + 2):
