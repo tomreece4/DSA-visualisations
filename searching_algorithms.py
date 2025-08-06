@@ -2,21 +2,27 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def linear_search(size_of_array, speed, target=None):
+    # Generate random list of numbers to search through
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(size_of_array)
 
+    # Pick a random target from the list
     if target is None:
-        target = np.random.choice(number_list)  # Pick a target that definitely exists
+        target = np.random.choice(number_list)
 
     found = False
     for i in range(size_of_array):
+        # Highlight the current element we're checking in red
         colors = ['blue'] * size_of_array
-        colors[i] = 'red'  # Highlight current element being compared
+        colors[i] = 'red'
+
         plt.bar(x, number_list, color=colors)
         plt.title(f"Searching for: {target}")
         plt.pause(speed)
         plt.cla()
+
         if number_list[i] == target:
+            # If target found, show it in green
             colors[i] = 'green'
             plt.bar(x, number_list, color=colors)
             plt.title(f"Found: {target} at index {i}")
@@ -26,11 +32,13 @@ def linear_search(size_of_array, speed, target=None):
             break
 
     if not found:
+        # Target not found, show the full list in blue again
         plt.bar(x, number_list, color='blue')
         plt.title(f"{target} not found in array.")
         plt.pause(speed)
         plt.cla()
 
+    # Highlight target occurrence in green, others blue
     colors = ['green' if number_list[i] == target else 'blue' for i in range(size_of_array)]
     plt.bar(x, number_list, color=colors)
     plt.title("Search Complete")
@@ -39,11 +47,13 @@ def linear_search(size_of_array, speed, target=None):
 
 
 def binary_search(size_of_array, speed, target=None):
-    number_list = np.sort(np.random.randint(0, 100, size_of_array))  # Must be sorted
+    # Sort list as needed for binary search
+    number_list = np.sort(np.random.randint(0, 100, size_of_array))
     x = np.arange(size_of_array)
 
+    # Pick a target from the list (guaranteed to be present)
     if target is None:
-        target = np.random.choice(number_list)  # Ensure the target is in the array
+        target = np.random.choice(number_list)
 
     low = 0
     high = size_of_array - 1
@@ -52,6 +62,10 @@ def binary_search(size_of_array, speed, target=None):
     while low <= high:
         mid = (low + high) // 2
 
+        # Colour code:
+        # purple for current low/high bounds,
+        # red for the middle element we're checking,
+        # light grey for elements outside the current search range
         colors = ['blue'] * size_of_array
         colors[low] = 'purple'
         colors[high] = 'purple'
@@ -67,6 +81,7 @@ def binary_search(size_of_array, speed, target=None):
         plt.cla()
 
         if number_list[mid] == target:
+            # Found target, Highlight in green
             colors[mid] = 'green'
             plt.bar(x, number_list, color=colors)
             plt.title(f"Found: {target} at index {mid}")
@@ -77,11 +92,11 @@ def binary_search(size_of_array, speed, target=None):
             found = True
             break
         elif number_list[mid] < target:
-            low = mid + 1
+            low = mid + 1  # Search in the upper half
         else:
-            high = mid - 1
+            high = mid - 1  # Search in the lower half
 
-    # Final display
+    # Final plot at the end of the search
     colors = ['green']
     plt.bar(x, number_list, color=colors)
     plt.title("Search Complete" if found else f"{target} not found")

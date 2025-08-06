@@ -8,17 +8,19 @@ if __name__ == "__main__":
     from tkinter import ttk, messagebox
 
     def update_param_slider(*args):
+        # Change the slider label and limits based on the selected algorithm
         algo = algo_var.get()
         if algo in ["Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Merge Sort", "Linear Search", "Binary Search"]:
             param_text_label.config(text="Size:")
             param_slider.config(from_=5, to=200)
-            param_slider.set(30)
+            param_slider.set(30)  # Default number of elements
         elif algo in ["Depth-First Search", "Breadth-First Search"]:
             param_text_label.config(text="Depth:")
             param_slider.config(from_=2, to=5)
-            param_slider.set(4)
+            param_slider.set(4)  # Depth for graph traversal
 
     def run():
+        # Take selected settings and start algorithm
         algo = algo_var.get()
         param = int(param_var.get())
         speed = speed_var.get()
@@ -42,14 +44,14 @@ if __name__ == "__main__":
         elif algo == "Binary Search":
             searching_algorithms.binary_search(param, speed)
 
-    # GUI setup
+    # Set up the main window
     root = tk.Tk()
     root.title("Algorithm Visualizer")
 
     mainframe = ttk.Frame(root, padding=10)
     mainframe.pack(fill=tk.BOTH, expand=True)
 
-    # Algorithm selection
+    # Dropdown to pick which algorithm to run
     ttk.Label(mainframe, text="Algorithm:").grid(column=0, row=0, sticky=tk.W)
     algo_var = tk.StringVar(value="Bubble Sort")
     algo_menu = ttk.Combobox(mainframe, textvariable=algo_var, state="readonly",
@@ -65,9 +67,10 @@ if __name__ == "__main__":
                                   "Binary Search",
                               ])
     algo_menu.grid(column=1, row=0, sticky=tk.EW)
+    # When the selection changes, update the parameter slider
     algo_menu.bind("<<ComboboxSelected>>", update_param_slider)
 
-    # Parameter slider with label
+    # Slider to pick the parameter (size or depth)
     param_text_label = ttk.Label(mainframe, text="Size:")
     param_text_label.grid(column=0, row=1, sticky=tk.W)
     param_var = tk.DoubleVar(value=30)
@@ -77,7 +80,7 @@ if __name__ == "__main__":
     param_value_label = ttk.Label(mainframe, text=str(int(param_var.get())), width=5)
     param_value_label.grid(column=2, row=1, sticky=tk.W)
 
-    # Speed slider with live value display
+    # Slider to adjust how fast the visualisation runs
     ttk.Label(mainframe, text="Frame Delay (secs)").grid(column=0, row=2, sticky=tk.W)
     speed_var = tk.DoubleVar(value=0.1)
     speed_slider = ttk.Scale(mainframe, variable=speed_var, from_=0.1, to=1, orient="horizontal",
@@ -86,16 +89,15 @@ if __name__ == "__main__":
     speed_value_label = ttk.Label(mainframe, text=f"{speed_var.get():.2f}", width=5)
     speed_value_label.grid(column=2, row=2, sticky=tk.W)
 
-    # Run button
+    # Button to start running the selected algorithm
     run_button = ttk.Button(mainframe, text="Run", command=run)
     run_button.grid(column=0, row=3, columnspan=2, pady=5)
 
-    # Make columns expand
+    # Dynamically adjust columns to window size
     root.columnconfigure(0, weight=1)
     root.columnconfigure(1, weight=1)
     mainframe.columnconfigure(1, weight=1)
 
     update_param_slider()
     root.mainloop()
-
 
