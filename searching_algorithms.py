@@ -2,17 +2,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def linear_search(size_of_array, speed, target=None):
-    # Generate random list of numbers to search through
+    # Generate random list of numbers to search through so that the user doesn't have to write their own list
     number_list = np.random.randint(0, 100, size_of_array)
     x = np.arange(size_of_array)
 
-    # Pick a random target from the list
+    # Pick a random target from the list to make the search more authentic
     if target is None:
         target = np.random.choice(number_list)
 
     found = False
     for i in range(size_of_array):
-        # Highlight the current element we're checking in red
+        # Highlight the current element we're checking in red, to provide a good visual cue to the user
         colors = ['blue'] * size_of_array
         colors[i] = 'red'
 
@@ -32,7 +32,6 @@ def linear_search(size_of_array, speed, target=None):
             break
 
     if not found:
-        # Target not found, show the full list in blue again
         plt.bar(x, number_list, color='blue')
         plt.title(f"{target} not found in array.")
         plt.pause(speed)
@@ -47,11 +46,11 @@ def linear_search(size_of_array, speed, target=None):
 
 
 def binary_search(size_of_array, speed, target=None):
-    # Sort list as needed for binary search
+    # Binary search needs to be on a sorted list
     number_list = np.sort(np.random.randint(0, 100, size_of_array))
     x = np.arange(size_of_array)
 
-    # Pick a target from the list (guaranteed to be present)
+    # Pick a target from the list, to guarantee it can be found.
     if target is None:
         target = np.random.choice(number_list)
 
@@ -92,7 +91,7 @@ def binary_search(size_of_array, speed, target=None):
             found = True
             break
         elif number_list[mid] < target:
-            low = mid + 1  # Search in the upper half
+            low = mid + 1  # Less than target so you want to check higher values
         else:
             high = mid - 1  # Search in the lower half
 

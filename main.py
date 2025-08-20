@@ -8,7 +8,7 @@ if __name__ == "__main__":
     from tkinter import ttk, messagebox
 
     def update_param_slider(*args):
-        # Change the slider label and limits based on the selected algorithm
+        # Changes the slider label and limits to fit the desired algorithm
         algo = algo_var.get()
         if algo in ["Bubble Sort", "Selection Sort", "Insertion Sort", "Quick Sort", "Merge Sort", "Linear Search", "Binary Search"]:
             param_text_label.config(text="Size:")
@@ -20,7 +20,7 @@ if __name__ == "__main__":
             param_slider.set(4)  # Depth for graph traversal
 
     def run():
-        # Take selected settings and start algorithm
+        # Takes the selected parameters to apply them to the algorithm function
         algo = algo_var.get()
         param = int(param_var.get())
         speed = speed_var.get()
